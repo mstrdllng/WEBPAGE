@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="styles.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty - College of Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .light-theme {
+            background: linear-gradient(to right, black, orange);
+            color: white;
+        }
+
+        .dark-theme {
+            background: linear-gradient(to right, #333, #555);
+            color: #ccc;
+        }
+
+        html, body {
+            height: 100%;
+            box-sizing: border-box;
+        }
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    position: relative;
+    max-width: 2000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.nav-links li {
+    margin-right: 20px;
+    position: relative;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    display: inline-block;
+    perspective: 1000px;
+}
+
+.nav-links li a:hover {
+    transform: rotateX(15deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: orange;
+}
+
+/* Burger Menu */
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+
+       /* Main container */
+.department {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.department h2 {
+    font-size: 2rem;
+    margin: 0;
+    color: orange;
+    animation: fadeIn 1s ease-in-out;
+}
+ /* Main container */
+ .department {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.department h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: orange;
+}
+
+/* Dean Section */
+.dean {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.dean .person {
+    flex: 0 0 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Level styling for different sections */
+.level {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.person {
+    background-color: #f0f0f0;
+    color: black;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    flex: 1;
+    max-width: 23%;
+    min-width: 200px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.person:hover {
+    transform: scale(1.03);
+}
+
+.person img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.person h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.person p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* View Info Button */
+.view-info {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.view-info:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fff;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: black;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+    </style>
+</head>
+
+<body class="light-theme">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="COLLEGE OF ENGINEERING" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+            <li><a href="history.html">History</a></li>
+            <li class="dropdown">
+                <a href="#">Instructors <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-content">
+                    <li><a href="instructor.html">Curriculum Offering</a></li>
+                    <li><a href="faculty.html">Faculty</a></li>
+                </ul>
+            </li>
+            <li>
+            </li>
+            <li>
+                <a href="#" id="theme-toggle" title="Toggle Theme">
+                    <i class="fas fa-adjust"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+    <!-- Header Section -->
+    <header class="welcome-container">
+        <div class="welcome-content">
+            <h1>Welcome to College Of Engineering</h1>
+            <p>Engineering Dreams: Where Imagination Meets Innovation!</p>
+        </div>
+    </header>
+    
+        <div class="org-chart">
+            <div class="department">
+                <h2>Dean</h2>
+            </div>
+            <div class="dean">
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\dean.jpg" alt="Dean">
+                    <h3>GILBERT D. DEBOMA, REE, M.Eng.</h3>
+                    <p>College Dean</p>
+                    <button class="view-info" data-person="dean">View More</button>
+                </div>
+            </div>
+
+            <div class="department">
+                <h2>Program Chairpersonss</h2>
+            </div>
+            <div class="level">
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\tablingan.jpg" alt="Civil Engineering">
+                    <h3>FERDINAND D. TABLIGAN, RCE, M.Eng. </h3>
+                    <p>Civil Engineering</p>
+                    <button class="view-info" data-person="ce">View More</button>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\marave.png" alt="Computer Engineering">
+                    <h3>MELOJEAN C. MARAVE, LPT, MSIT</h3>
+                    <p>Computer Engineering</p>
+                    <button class="view-info" data-person="cpe">View More</button>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\dean.jpg" alt="Electrical Engineering">
+                    <h3>GILBERT D. DEBOMA, REE, M.Eng.</h3>
+                    <p>Electrical Engineering</p>
+                    <button class="view-info" data-person="ee">View More</button>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\marlon.jpg" alt="Mechanical Engineering">
+                    <h3>MARLON JAMES A. DEDICATORIA, RMEE, Ph.D.</h3>
+                    <p>Mechanical Engineering</p>
+                    <button class="view-info" data-person="me">View More</button>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\doths.jpg" alt="Mining Engineering">
+                    <h3>DOROTHY JOYCE SOLPICO DESIERTO</h3>
+                    <p>Mining Engineering</p>
+                    <button class="view-info" data-person="oom">View More</button>
+                </div>
+                </div>
+
+
+                    <div class="department">
+                        <h2>Civil Engineering</h2>
+                    </div>
+                    <div class="level">
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr.  RAYMOND ARAMAY.png" alt="Civil Engineering">
+                            <h3>Engr. RAYMOND ARAMAY</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr.  RONEL E. ROMERO.png" alt="Civil Engineering">
+                            <h3>Engr. RONEL E. ROMERO</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr.  ZENDREE ARAMAY.jpg" alt="Civil Engineering">
+                            <h3>Engr. ZENDREE ARAMAY</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr. ABRAHAM ANTONIO.PNG" alt="Civil Engineering">
+                            <h3>Engr. ABRAHAM ANTONIO</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr. ELENA LYN TOMBALE.jpg" alt="Civil Engineering">
+                            <h3>Engr. ELENA LYN TOMBALE</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\engr. eloisa romulo.png" alt="Civil Engineering">
+                            <h3>Engr. ELOISA ROMULO</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr. JEMAR DALUSONG.png" alt="Civil Engineering">
+                            <h3>Engr. JEMAR DALUSONG</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\engr. joven manangan.png" alt="Civil Engineering">
+                            <h3>Engr. JOVEN MANANGAN</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr. MA. THEREZA VICHO.jpg" alt="Civil Engineering">
+                            <h3>Engr. MA. THEREZA VICHO</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\engr. mar.png" alt="Civil Engineering">
+                            <h3>Engr. MARKO ANTONIO FERNANDEZ</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\Engr. VICTOR D. VICHO.jpg" alt="Civil Engineering">
+                            <h3>Engr. VICTOR D. VICHO</h3>
+                        </div>
+                        <div class="person">
+                            <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce  prof\engr. bisquera.png" alt="Civil Engineering">
+                            <h3>Engr. RYV ANTHONY BISQUERA</h3>
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="department">
+                <h2>Computer Engineering</h2>
+            </div>
+            <div class="level">
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. acain.png" alt="Computer Engineering">
+                    <h3>Engr. BRYAN CARLOS B. ACAIN</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. barrera.png" alt="Computer Engineering">
+                    <h3>Engr. RICKY S. BARRERA</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. basilio.png" alt="Computer Engineering">
+                    <h3>Engr. DENNIZE JIANA R. BASILIO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. cantillo.png" alt="Computer Engineering">
+                    <h3>Engr. FROILAN G. CANTILLO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. leomo.png" alt="Computer Engineering">
+                    <h3>Engr. KIRK LEE P. LEOMO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. martin.png" alt="Computer Engineering">
+                    <h3>Engr. DIONISIO M. MARTIN, JR.</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. morillo.png" alt="Computer Engineering">
+                    <h3>Engr. ALLAN JAY L. MORILLO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. remolacio.png" alt="Computer Engineering">
+                    <h3>Engr. MARTEEN BERAVON REMOLACIO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe prof\engr. sabado.png" alt="Computer Engineering">
+                    <h3>Engr. OLIVER A. SABADO, JR.</h3>
+                </div>
+               </div>
+
+            <div class="department">
+                <h2>Electrical Engineering</h2>
+            </div>
+            <div class="level">
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\eeprof\egr. balicao.png" alt="Electrical Engineering">
+                    <h3>Engr. RUE LEI BALICACO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\eeprof\engr. eradad.png" alt="Electrical Engineering">
+                    <h3>Engr. FERNAN EDARAD</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\eeprof\engr. marafina.png" alt="Electrical Engineering">
+                    <h3>Engr. CHRISTIAN MARAFINA</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\eeprof\engr. marquez.png" alt="Electrical Engineering">
+                    <h3>Engr. DORIS H. MARQUEZ</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\eeprof\engr. orianza.png" alt="Electrical Engineering">
+                    <h3>Engr. SENATO ORIANZA</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\eeprof\engr. parallag.png" alt="Electrical Engineering">
+                    <h3>Engr. MARK LESTER PARALLAG</h3>
+                </div>
+
+            </div>
+            <div class="department">
+                <h2>Mechanical Engineering</h2>
+            </div>
+            <div class="level">
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\me prof\engr. bautista.png" alt="mechanical Engineering">
+                    <h3>Engr.  Ma. Karla Jessica Bautista</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\me prof\engr. cuevas.png" alt="mechanical Engineering">
+                    <h3>Engr. JASPER ANTHONY CUEVAS</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\me prof\engr. padua.png" alt="mechanical Engineering">
+                    <h3>Engr. MICHAEL ROMUALDO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\me prof\engr. romualdo.png" alt="mechanical Engineering">
+                    <h3>Engr. NHOELLE PADUA</h3>
+                </div>
+            </div>
+
+            <div class="department"></div>
+                <h2>Allied and General Education</h2>
+            </div>
+            <div class="level">
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\besa.png" alt="allied Engineering">
+                    <h3>Ms. APRIL BESA</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\danila.png" alt="allied Engineering">
+                    <h3>Ms. JANE D. DANILA</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\dr. punzalan.png" alt="allied Engineering">
+                    <h3>Dr. EDNA PUNZALAN</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\egr. bugayong.png" alt="allied Engineering">
+                    <h3>Dr. EMELYN E. BUGAYONG</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\engr. dullas.png" alt="allied Engineering">
+                    <h3>Engr. CINDY DULLAS</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\engr. ebue.png" alt="allied Engineering">
+                    <h3>Engr. MELISSA M. EBUE</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\engr. rico.png" alt="allied Engineering">
+                    <h3>Engr. CLARISSE HOPE M. RICO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\qui.png" alt="allied Engineering">
+                    <h3>Ms. KAREN QUITORIANO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\medrano.png" alt="allied Engineering">
+                    <h3>Mr. LUCIANO MEDRANO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\parangat.png" alt="allied Engineering">
+                    <h3>Ms. MONICA PARANGAT</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\pelenio.png" alt="allied Engineering">
+                    <h3>Ms. JIO ERIKA PELINIO</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\santos.png" alt="allied Engineering">
+                    <h3>Ms. SANTOS, MADELLE</h3>
+                </div>
+                <div class="person">
+                    <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\allied\velarde.png" alt="allied Engineering">
+                    <h3>Ms. MAE JOYCE VELARDE</h3>
+                </div>
+
+    <!-- Modals for additional info -->
+    <div id="modal-dean" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>GILBERT D. DEBOMA, REE, M.Eng.</h3>
+            <p>Engr. Gilbert D. Deboma has been a faculty member of the College of Engineering for 24 years, holding the position of Associate Professor V. He earned his Bachelor of Science in Electrical Engineering from Technological Institute of the Philippines – Quezon City and his Master of Science in Electronics Engineering from Andong National University in South Korea. Currently pursuing a PhD in Agricultural Engineering at Central Luzon State University, he is also an active member of the Institute of Integrated Electrical Engineers, Inc., the recognized professional organization for electrical practitioners in the Philippines. In addition to his teaching role, he serves as the dean of the College of Engineering and the Program Chairperson of the Electrical Engineering Department.</p>
+        </div>
+    </div>
+    <div id="modal-ce" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>FERDINAND D. TABLIGAN, RCE, M.Eng. </h3>
+            <p>Head of Civil Engineering. </p>
+        </div>
+    </div>
+    <div id="modal-cpe" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>MELOJEAN C. MARAVE, LPT, MSIT</h3>
+            <p>Engr. Melojean C. Marave boasts a robust educational background, including a Doctorate in Information Technology from Technological Institute of the Philippines and a Doctor of Education with a focus on Educational Management from Ramon Magsaysay Technological University, Iba Campus. She also holds a Master of Science in Information Technology from Polytechnic University of the Philippines and a Post-Baccalaureate Certificate in Professional Education from Ramon Magsaysay Technological University Main Campus. Additionally, she completed a Trade Course in IT Course Design and Development and CISCO Certified Network Associate modules from UP Information Technology Training Center. She earned her Bachelor of Science in Computer Engineering in 2001. Currently, Engr. Marave serves as the BS Computer Engineering Program Chairperson at PRMSU Iba, Zambales, and is actively engaged in various faculty and extension roles, particularly in community extension. She is a licensed professional teacher and a member of several professional organizations, including Colleges and Universities in the Philippines and the Institute of Computer Engineers of the Philippines. She also serves as an Accreditor for AACCUP and an Internal Auditor for ISO, and has been recognized for her contributions to youth leadership and leadership excellence.</p>
+        </div>
+    </div>
+    <div id="modal-ee" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>GILBERT D. DEBOMA, REE, M.Eng.</h3>
+            <p>Engr. Gilbert D. Deboma has been a faculty member of the College of Engineering for 24 years and holds the rank of Associate Professor V. He earned his Bachelor of Science in Electrical Engineering from the Technological Institute of the Philippines – Quezon City and his Master of Science in Electronics Engineering from Andong National University in South Korea. Currently pursuing a PhD in Agricultural Engineering at Central Luzon State University, he is an active member of the Institute of Integrated Electrical Engineers, Inc., the official organization for electrical practitioners in the Philippines. Engr. Deboma is the dean of the College of Engineering and also serves as the Program Chairperson for the Electrical Engineering Department.</p>
+        </div>
+    </div>
+    <div id="modal-me" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>MARLON JAMES A. DEDICATORIA, RMEE, Ph.D.</h3>
+            <p>Dr. Marlon James A. Dedicatoria is a licensed mechanical engineer serving as the Vice President for Research and Development and Chairperson of the Mechanical Engineering Program at President Ramon Magsaysay State University (PRMSU) in Iba, Zambales. With over a decade of teaching experience, he instructs courses in the Bachelor of Science in Mechanical Engineering (BSME) program and teaches mathematics at the graduate school level. He earned his Bachelor of Science in Mechanical Engineering from Ramon Magsaysay Technological University in 2006, followed by a Master of Science and a PhD in Mechanical Design and Systems Engineering from Andong National University, South Korea. He also completed a post-doctoral fellowship at Andong National University’s Materials Behavior Evaluation Laboratory. His research focuses on the electromechanical properties of high-temperature superconductors. Dr. Dedicatoria currently holds the rank of Professor 3 at PRMSU.</p>
+        </div>
+    </div>
+
+
+    <script>
+        // JavaScript for theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            document.body.classList.toggle('light-theme');
+        });
+
+        // JavaScript for modal functionality
+        document.querySelectorAll('.view-info').forEach(button => {
+            button.addEventListener('click', function() {
+                const person = this.getAttribute('data-person');
+                const modal = document.getElementById(`modal-${person}`);
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        document.querySelectorAll('.close').forEach(closeButton => {
+            closeButton.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
+
+        // JavaScript for Modal Opening and Closing
+const modals = document.querySelectorAll('.modal');
+const closeButtons = document.querySelectorAll('.close');
+const viewInfoButtons = document.querySelectorAll('.view-info');
+
+// Open modal
+viewInfoButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+        modals[index].classList.add('active');
+    });
+});
+
+// Close modal
+closeButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+        modals[index].classList.remove('active');
+    });
+});
+
+// Close modal on outside click
+window.addEventListener('click', (e) => {
+    modals.forEach(modal => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="styles.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</title>
+
+    <title>History - College of Engineering</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .light-theme {
+            background: linear-gradient(to right, black, orange);
+            color: white;
+        }
+
+        .dark-theme {
+            background: linear-gradient(to right, #333, #555);
+            color: #ccc;
+        }
+
+        html, body {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Navbar Styling */
+       /* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h2 {
+    color: #fff;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.nav-links li {
+    margin-right: 15px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: block;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        z-index: 10;
+    }
+
+    .nav-links li {
+        width: 100%;
+        margin: 0;
+    }
+
+    .nav-links li a {
+        padding: 15px;
+        border-bottom: 1px solid #444;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .nav-links.show {
+        max-height: 500px; /* Adjust based on the number of links */
+    }
+}
+
+
+        /* Navigation Links */
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin-left: auto;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            perspective: 1000px;
+        }
+
+        .nav-links li a:hover {
+            transform: rotateX(15deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: orange;
+        }
+
+        .nav-links .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 8px;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .nav-links .dropdown-content li {
+            padding: 10px;
+        }
+
+        .nav-links .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .search-icon, #theme-toggle {
+            cursor: pointer;
+        }
+/* Carousel Styling */
+.carousel-container {
+    width: 100%;
+    max-width: 100vw;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 1s ease-in-out; /* Transition speed when sliding */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Keyframes for the sliding animation */
+@keyframes slide {
+    0% { transform: translateX(0%); }     /* First image */
+    20% { transform: translateX(0%); }    /* Stay on first image */
+    
+    25% { transform: translateX(-100%); } /* Slide to second image */
+    45% { transform: translateX(-100%); } /* Stay on second image */
+    
+    50% { transform: translateX(-200%); } /* Slide to third image */
+    70% { transform: translateX(-200%); } /* Stay on third image */
+    
+    75% { transform: translateX(-300%); } /* Slide to fourth image */
+    95% { transform: translateX(-300%); } /* Stay on fourth image */
+    
+    100% { transform: translateX(0%); }   /* Return to first image */
+}
+
+/* Set the total duration to 20s for 5 seconds per image */
+.carousel-slide {
+    animation: slide 20s infinite;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 250px;
+    }
+}
+
+/* General Styling */
+.history-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.history-container h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #2c3e50;
+    animation: fadeInDown 1s ease-in-out;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.department-section {
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-in-out forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Added for positioning images */
+}
+
+/* Enhanced Hover Effects */
+.department-section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.department-section h3 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.department-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.department-section:hover h3 {
+    color: #e67e22;
+    transform: translateX(5px); /* Small slide effect on hover */
+}
+
+/* Image styles */
+.department-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: block; /* Center images */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation for each section */
+.department-section:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.department-section:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.department-section:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+.department-section:nth-child(4) {
+    animation-delay: 2s;
+}
+
+/* Button-like hover effect for each section */
+.department-section:hover {
+    background-color: #fefefe;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Divider line */
+.department-section::after {
+    content: '';
+    display: block;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, #e67e22, transparent);
+    margin: 20px auto;
+}
+
+/* Styling for each department title */
+.department-section h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Add a rotating arrow icon effect next to the heading */
+.department-section h3::before {
+    content: '➤';
+    position: absolute;
+    left: -25px;
+    font-size: 22px;
+    color: #e67e22;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.department-section:hover h3::before {
+    transform: rotate(90deg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .history-container {
+        padding: 15px;
+    }
+
+    .department-section h3 {
+        font-size: 22px;
+    }
+
+    .department-section p {
+        font-size: 16px;
+    }
+
+    .department-section img {
+        width: 90%; /* Adjust image width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .history-container {
+        padding: 10px;
+    }
+
+    .department-section h3 {
+        font-size: 18px;
+    }
+
+    .department-section p {
+        font-size: 14px;
+    }
+
+    .department-section img {
+        width: 95%; /* Further adjust image width for mobile */
+    }
+}
+
+    </style>
+</head>
+
+
+<body class="light-theme">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="COLLEGE OF ENGINEERING" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+            <li><a href="history.html">History</a></li>
+            <li class="dropdown">
+                <a href="#">Instructors <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-content">
+                    <li><a href="instructor.html">Curriculum Offering</a></li>
+                    <li><a href="faculty.html">Faculty</a></li>
+                </ul>
+            </li>
+          
+            <li>
+                <a href="#" id="theme-toggle" title="Toggle Theme">
+                    <i class="fas fa-adjust"></i>
+                </a>
+            </li>
+        </ul>
+      
+    </nav>
+    <!-- Header Section -->
+    <header class="welcome-container">
+        <div class="welcome-content">
+            <h1>Welcome to College Of Engineering</h1>
+            <p>Engineering Dreams: Where Imagination Meets Innovation!</p>
+        </div>
+    </header>
+
+     <!-- Carousel Section -->
+     <div class="carousel">
+        <div class="carousel-controls">
+            <button class="carousel-prev">&#10094;</button>
+            <button class="carousel-next">&#10095;</button>
+        </div>
+        <div class="slides">
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\bg.jpg" alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\coe.png" alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\selb.png" alt="Image 3">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe-removebg-preview.png" alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\me-removebg-preview.png" alt="Image 3">
+            </div>
+            <div class="slide">
+                <img src="C:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ee-removebg-preview.png" alt="Image 4">
+            </div>
+            <div class="slide">
+                <img src="C:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce-removebg-preview.png" alt="Image 5">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\em-removebg-preview.png" alt="Image 6">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="history-container">
+        <h2>History of the College of Engineering</h2>
+
+        <div class="department-section">
+            <h3>Bachelor of Science in Civil Engineering</h3>
+            <p>   The Bachelor of Science in Civil Engineering Program was first proposed to be offered in Botolan Campus under the Self-Liquidating Program Scheme in early 2002 under the leadership of President Feliciano S. Rosete. The RMTU Board of Regents approved the proposal in early 2003 but Iba Campus was chosen as its venue on the issues of facilities and faculty to handle the program in Botolan Campus. The BSCE program started in the first semester of the school year 2003-2004 under the Institute of Evening Opportunity Programs with Prof. Cecilia A. Santiago as the Dean and close coordination with Engr. Liza M. Atienza, the Dean of the College of Engineering and Architecture.
+
+                BSCE had its first batch graduate in March 2008 with a seventy percent passing rate in the board examination. In 2010, the Board of Regents and the DBM approved its transfer to CEA as one of the RMTU regular programs. The BSCE received its Certificate of Program Compliance and level I AACCUP accreditation in 2016 and level II in 2019.</p>
+                <img src="path_to_civil_engineering_image.jpg" alt="Civil Engineering">
+
+            </div>
+
+        <div class="department-section">
+            <h3>Bachelor of Science in Computer Engineering</h3>
+            <p>  The Bachelor of Science in Computer Engineering in President Ramon Magsaysay State University began in the 2nd Semester of the Academic Year 2001-2002 when the then Ramon Magsaysay Technological University (RMTU) Board of Regents (BOR) approved the offering of self-liquidating degree programs in evening classes. The degree program was officially opened in the Academic Year 2002-2003 under the Institute of Evening Opportunity Program (IEOP) headed by Engr. Juvelyn M. Bueno as the first Program Chair. The first batch graduated in 2007.
+
+                In 2009, Engr. Melojean C. Marave was designated as the Program Chair. In 2012, Engr. Ricky S. Barrera assumed the Chairmanship of the program until 2017 which was then designated to Engr. Dionisio M. Martin, Jr. up to the present.
+      
+                Due to the increasing population of students, the program was offered in Morning and Evening Sessions in AY 2004-2005 under the College of Communications and Information Technology (CCIT) and IEOP. The last batch of BSCpE in the IEOP graduated in 2012. From then on, the program was offered only in the CCIT. In 2018, in compliance with the recommendation of the Commission on Higher Education (CHED), the program was transferred under the College of Engineering (COE).</p>
+                <img src="path_to_civil_engineering_image.jpg" alt="Civil Engineering">
+
+            </div>
+
+        <div class="department-section">
+            <h3>Bachelor of Science in Electrical Engineering</h3>
+            <p>The Bachelor of Science in Electrical Engineering in the President Ramon Magsaysay State University began when the RMPC Board of Regents approved the curricula leading to the degrees of Bachelor of Science and Master of Science in Electrical Engineering. The degree program was officially opened, and the Department was first headed by Engr. Simon Jaring. The Department graduated its first batch of students in 2001, as one of oldest program in the College.</p>
+            <img src="path_to_civil_engineering_image.jpg" alt="Civil Engineering">
+
+        </div>
+
+        <div class="department-section">
+            <h3>Bachelor of Science in Mechanical Engineering</h3>
+            <p> The Bachelor of Science in Mechanical Engineering in President RamonMagsaysay State University began when the RMPC Board of Regents approved the curricula leading to the degrees of Bachelor of Science and Master of Science in Mechanical Engineering. The degree program was officially opened and the department was first headed by Engr. Noel M. Dioyan. The department graduated its first batch of students in 2001, as one of oldest programs in the College.</p>
+            <img src="path_to_civil_engineering_image.jpg" alt="Civil Engineering">
+
+        </div>
+
+        <div class="department-section"></div>
+            <h3>Bachelor of Science in Mining Engineering</h3>
+            <p> The Bachelor of Science in Mining Engineering in President RamonMagsaysay State University </p>
+            <img src="path_to_civil_engineering_image.jpg" alt="Civil Engineering">
+
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            body.classList.toggle('light-theme');
+        });
+        // Carousel Script
+        const slides = document.querySelector('.slides');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        let currentIndex = 0;
+        const slideCount = slides.children.length;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            slides.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex <= 0) ? slideCount - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex >= slideCount - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+
+        setInterval(() => {
+            currentIndex = (currentIndex >= slideCount - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        }, 5000); // Auto slide every 5 seconds
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="styles.css">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Curricular Offerings</title>
+    
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.light-theme {
+  background: linear-gradient(to right, black, orange);
+  color: white;
+}
+
+.dark-theme {
+  background: linear-gradient(to right, #333, #555);
+  color: #ccc;
+}
+
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  position: relative; /* Ensure the search container can be positioned absolutely */
+  max-width: 2000px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin-left: auto; /* Align links to the right */
+}
+
+.nav-links li {
+  margin-right: 20px;
+  position: relative;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  display: inline-block;
+  perspective: 1000px;
+}
+
+.nav-links li a:hover {
+  transform: rotateX(15deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: orange;
+}
+
+/* Dropdown Menu */
+.nav-links .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 8px;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.nav-links .dropdown-content li {
+  padding: 10px;
+}
+
+.nav-links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.search-icon, #theme-toggle {
+  cursor: pointer;
+}
+
+/* Header Section */
+.welcome-container {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.welcome-container h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.welcome-container p {
+    font-size: 18px;
+}
+
+/* Curricular Offerings Container */
+.curricular-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Department Section */
+.department-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.department-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.department-section > .button {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.department-section > .button:hover {
+    background-color: #ff6600;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+/* Course Section */
+.course-section {
+    margin-left: 30px;
+    margin-top: 15px;
+    border-left: 3px solid #ff6600;
+    padding-left: 20px;
+}
+
+.course-section > .button {
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.course-section > .button:hover {
+    background-color: #ff6600;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+/* Year Section */
+.year-section {
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.year-section > .button {
+    display: inline-block;
+    background-color: #e6e6e6;
+    color: #333;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.year-section > .button:hover {
+    background-color: #ff6600;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Instructors Button */
+.instructor-button {
+    margin-top: 15px;
+}
+
+.instructor-button > .button {
+    background-color: #ff6600;
+    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.instructor-button > .button:hover {
+    background-color: #cc5200;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        display: none;
+    }
+
+    .navbar .menu-toggle {
+        display: block;
+        cursor: pointer;
+        color: white;
+        font-size: 24px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Adjust padding and margins for smaller screens */
+    .curricular-container {
+        padding: 20px;
+    }
+
+    .department-section {
+        padding: 15px;
+    }
+
+    .course-section {
+        margin-left: 15px;
+        padding-left: 10px;
+    }
+
+    .year-section {
+        margin-left: 20px;
+    }
+}
+
+    </style>
+</head>
+
+
+<body class="light-theme">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="COLLEGE OF ENGINEERING" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+            <li><a href="history.html">History</a></li>
+            <li class="dropdown">
+                <a href="#">Instructors <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-content">
+                    <li><a href="instructor.html">Curriculum Offering</a></li>
+                    <li><a href="faculty.html">Faculty</a></li>
+                </ul>
+            </li>
+           
+            <li>
+                <a href="#" id="theme-toggle" title="Toggle Theme">
+                    <i class="fas fa-adjust"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="welcome-container">
+        <h1>Welcome to the College of Engineering</h1>
+        <p>Explore our curricular offerings and programs.</p>
+    </section>
+
+    <!-- Curricular Offerings Section -->
+    <div class="curricular-container">
+        <h2>Our Departments and Programs</h2>
+        
+        <!-- Example Departments and Courses -->
+        <div class="department-section">
+            <button class="button" onclick="redirectToLink('https://web.facebook.com/PICEPRMSU')">Civil Engineering</button>
+            <div class="course-section">
+                <div class="year-section">
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1ZH8c4FtWYCm8Nr4K_vpJQIwBj21ouwMF/view')"> CMO</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1dAxJiHzIfv6htUOxCNrbk-bxUfF7X28I/view')">2022</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1IDMuf4xRgCHvWchZGmHHCI8T6XDV2rI0/view')">2019</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1PiETznugHPxM_sfhCu5jz40QSoqpBSx0/view')">2018</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1NMIBRoesUtYFBcwrEBkWPnJ6aKAqDDMe/view')">2018 (NON- STEM)</button>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="department-section">
+            <button class="button" onclick="redirectToLink('https://web.facebook.com/CpE.PRMSU')">Computer Engineering</button>
+            <div class="course-section">
+                <div class="year-section">
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1MfQptZCp0ntYegS9wuhrsBzaq0eQ36lb/view')">CMO</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1uoopTW6_3ilw7qkzFTO0VgObgS96TtPQ/view')">2022</button>
+                    <button class="button" onclick="redirectToLink('computer-2nd-year.html')">2019</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1gb9F1AjD0ZDIyK0rHltQg5Vzz0a2ia3z/viewl')">2018</button>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="department-section">
+            <button class="button" onclick="redirectToLink('https://web.facebook.com/prmsupsmesu')">Electrical Engineering</button>
+            <div class="course-section">
+                <div class="year-section">
+                    <button class="button" onclick="redirectToLink('mhttps://drive.google.com/file/d/1qLqbyQsWhAR4IApHhksulj6FhU9msxt5/view')"> CMO</button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1L7vvkXEFR4IZ_-YJfMCr5oUjOJGyBand/viewl')">2022 </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1LN2HKQoYfgk0vAALgU9VDPaRtPQ2iEhi/view')">2019 </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1Mondhpb6XfCz4c6eiAIBlCaChTH7vofL/view')">2018 </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/13XBB9Q3Azof4-OJ1COD13ZPGTEaPl2VZ/view')">2018 (NON-STEM) </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="department-section">
+            <button class="button" onclick="redirectToLink('https://web.facebook.com/IIEEEESOfficial')">Mechanical Engineering</button>
+            <div class="course-section">
+                <div class="year-section">
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/13MkQIMg18aMg15J5GcpQ22gxoi4E-WhN/view')"> CMO </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1_ohlfVvqBD2BVIU3iI1xAJXe8tN67pxn/view')">2022 </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1qIRVGwAu4GZJbLNw8PRsArWFI_y_DXBY/view')">2019 </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1iPmxV6OHfDDlV5JZmDzfngqvjPDF-kfp/view')">2018 </button>
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1QWS1lT3bmBREKOYPhTT1IOw-kW2eI-r9/view')">2018 (NON- STEM) </button>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="department-section">
+            <button class="button" onclick="redirectToLink('https://web.facebook.com/profile.php?id=61564145576841')">Mining Engineering</button>
+            <div class="course-section">
+                <div class="year-section">
+                    <button class="button" onclick="redirectToLink('https://drive.google.com/file/d/1G80jfNY3p823SDnztj9GnFhS3KI8dwSe/viewining-1st-year.html')">CMO</button>
+                    <button class="button" onclick="redirectToLink('mining-2nd-year.html')">2022</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructor-button">
+            <button class="button" onclick="redirectToLink('faculty.html')">View Faculty Members</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle theme
+        const toggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            body.classList.toggle('light-theme');
+        });
+
+        // Redirect function for buttons
+        function redirectToLink(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

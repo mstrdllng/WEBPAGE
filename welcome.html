@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay loop id="background-video">
+      <source src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\C0EEE.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+    <div class="welcome-message">
+      <h1>Welcome to College of Engineering</h1>
+      <p>Your gateway to innovation and excellence</p>
+      <!-- Next Button -->
+      <button id="next-btn">Next</button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById("background-video");
+
+    // Redirect to home.html after the video ends
+    video.addEventListener("ended", () => {
+      window.location.href = "home.html"; // Replace with the actual path to your home.html
+    });
+
+    // Ensure video plays unmuted after user interaction if autoplay policy blocks it
+    document.body.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+      }
+      if (video.muted) {
+        video.muted = false; // Unmute the video
+      }
+    });
+
+    // "Next" button click listener for redirection
+    const nextButton = document.getElementById("next-btn");
+    nextButton.addEventListener("click", () => {
+      window.location.href = "home.html"; // Replace with the actual path to your home.html
+    });
+  </script>
+</body>
+</html>
+
+<style>
+  /* General reset */
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  }
+
+  .welcome-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInUp 2s forwards; /* Animation applied */
+  }
+
+  /* Fade-in and slide-up animation */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 50%); /* Start below the screen */
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%); /* End at the center */
+    }
+  }
+
+  .welcome-message h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .welcome-message p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .welcome-message button {
+    background-color: #ff7f50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .welcome-message button:hover {
+    background-color: #ff4500;
+  }
+
+  .content {
+    padding: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+  .content h2 {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .content p {
+    font-size: 1rem;
+    color: #555;
+  }
+</style>

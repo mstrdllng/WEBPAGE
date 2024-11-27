@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+</head>
+
+<body class="light-theme">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="COLLEGE OF ENGINEERING" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+            <li><a href="history.html">History</a></li>
+            <li class="dropdown">
+                <a href="#">Instructors <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-content">
+                    <li><a href="instructor.html">Curriculum Offering</a></li>
+                    <li><a href="faculty.html">Faculty</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" id="theme-toggle" title="Toggle Theme">
+                    <i class="fas fa-adjust"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Header Section -->
+    <header class="welcome-container">
+        <div class="welcome-content">
+            <h1>Welcome to College Of Engineering</h1>
+            <p>Engineering Dreams: Where Imagination Meets Innovation!</p>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <div class="carousel">
+        <div class="carousel-controls">
+            <button class="carousel-prev">&#10094;</button>
+            <button class="carousel-next">&#10095;</button>
+        </div>
+        <div class="slides">
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\bg.jpg" alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\cpe-removebg-preview.png" alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\me-removebg-preview.png" alt="Image 3">
+            </div>
+            <div class="slide">
+                <img src="C:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ee-removebg-preview.png" alt="Image 4">
+            </div>
+            <div class="slide">
+                <img src="C:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\ce-removebg-preview.png" alt="Image 5">
+            </div>
+            <div class="slide">
+                <img src="c:\Users\Mary Darling Ramos\OneDrive\Desktop\GRADWAITINGGGGG\MAAM JIA\New folder\PROJ\em-removebg-preview.png" alt="Image 6">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="content-container">
+        <section class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Email: <i class="fas fa-envelope"></i> online.coe@prmsu.edu.ph</p>
+            <p>Phone: <i class="fas fa-phone-alt"></i> 0919 069 9177</p>
+            <p>Follow us on: <a href="https://web.facebook.com/prmsucoe" class="social-icon"><i class="fab fa-facebook"></i></a></p>
+        </section>
+
+        <!-- Google Map Section -->
+        <section class="map-section">
+            <h2>Our Location</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3848.0709621212563!2d119.9810354745858!3d15.31837825910194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339424c83d987e01%3A0xadca8b21cb334301!2sPresident%20Ramon%20Magsaysay%20State%20University!5e0!3m2!1sen!2sph!4v1726545076095!5m2!1sen!2sph" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+        <!-- Mission, Vision, and Quality Assurance Policy -->
+        <section class="mission-vision-quality">
+            <h2>Our Vision</h2>
+            <p>PRMSU as a premier learner center and proactive university in a digital and global society.</p>
+
+            <h2>Our Mission</h2>
+            <p>The President Ramon Magsaysay State University shall primarily provide advanced and higher professional, technical, special instructions in various disciplines; undertake research, extension, and income generation programs for sustainable development of Zambales, the region, and the country.</p>
+
+            <h2>Our Quality Policy</h2>
+            <p>The President Ramon Magsaysay State University is committed to continually strive for excellence in instruction, research, extension, and production to strengthen global competitiveness adhering to quality standards for the utmost satisfaction of its valued customers.</p>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 College Of Engineering</p>
+        <div class="footer-social">
+            <a href="https://web.facebook.com/prmsucoe" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:online.coe@prmsu.edu.ph" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <!-- Script for theme toggle -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            body.classList.toggle('light-theme');
+        });
+
+        // Carousel Script
+        const slides = document.querySelector('.slides');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        let currentIndex = 0;
+        const slideCount = slides.children.length;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            slides.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex <= 0) ? slideCount - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex >= slideCount - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+
+        setInterval(() => {
+            currentIndex = (currentIndex >= slideCount - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        }, 5000); // Auto slide every 5 seconds
+        
+    </script>
+</body>
+</html>
